@@ -6,13 +6,18 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "lint:r": "eslint --ext .ts"
   },
   "author": "chrysochrome",
   "license": "ISC",
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.19.2",
+    "@typescript-eslint/parser": "^2.19.2",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "clean-webpack-plugin": "^3.0.0",
+    "eslint": "^6.8.0",
+    "eslint-loader": "^3.0.3",
     "html-webpack-plugin": "^3.2.0",
     "ts-loader": "^6.2.1",
     "typescript": "^3.7.5",
