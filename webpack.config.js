@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 /*
  * SplitChunksPlugin is enabled by default and replaced
@@ -30,12 +31,15 @@ module.exports = {
 	entry: './src/index.ts',
 
 	output: {
-		filename: '[name].[chunkhash].js',
+		filename: process.env.WEBPACK_DEV_SERVER ?
+				'[name].[chunkhash].js': 'shortcut-flow.js',
 		path: path.resolve(__dirname, 'dist'),
-		libraryTarget: 'var'
+		library: 'ShortcutFlow',
+		libraryExport: 'default',
+		libraryTarget: 'this'
 	},
 
-	plugins: [new webpack.ProgressPlugin(), new HtmlWebpackPlugin()],
+	plugins: [new webpack.ProgressPlugin(), new HtmlWebpackPlugin(), new CleanWebpackPlugin()],
 
 	module: {
 		rules: [
@@ -65,7 +69,7 @@ module.exports = {
 	},
 
 	devServer: {
-		open: true
+		// open: true
 	},
 
 	resolve: {
